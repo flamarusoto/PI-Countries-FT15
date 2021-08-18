@@ -1,8 +1,8 @@
 import './App.css';
 import React from 'react';
 
-import Landing from './Components/Landing';
-import Home from './Components/Home';
+import Landing from './Components/Landing/Landing';
+import Home from './Components/Home/Home';
 import CardDetail from './Components/CardDetail';
 import Form from './Components/Form';
 

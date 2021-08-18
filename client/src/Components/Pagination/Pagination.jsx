@@ -1,4 +1,7 @@
 import React from 'react';
+import s from '../Pagination/Pagination.module.css'
+
+// import { Chevron_circle_left } from '@fortawesome/react-fontawesome';
 
 export default function Pagination({ countriesPerPage, totalCountries, paginate }) {
     const pageNumbers = [];
@@ -7,12 +10,17 @@ export default function Pagination({ countriesPerPage, totalCountries, paginate 
     }
 
     return (
-        <nav>
+        <div className={s.container}>
+           
             {pageNumbers.map(n => (
-                        <button onClick={() => paginate(n)}>
+                 
+                        <button className={s.button} onClick={() => paginate(n)}>
                             {n}
                         </button>    
+            
                 ))}    
-        </nav>
+            
+               
+        </div>
     )
 }

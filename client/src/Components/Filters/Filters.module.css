@@ -1,0 +1,20 @@
+.container{
+    display: inline-grid;
+    margin-top: 10px;
+    margin-right: 18px;
+    margin-left: auto;
+    border-radius: 15%;
+    background: rgba(161, 158, 158, 0.8); 
+    padding: 0,3%;
+}
+.select {
+    font-family: 'Roboto Slab', serif;
+    font-size: 13px;
+    color: black;
+}
+.title{
+    font-family: 'Roboto Slab', serif;
+    font-size: 12px;
+    color: #fff;
+    font-weight: bold;
+}

@@ -1,0 +1,42 @@
+.landing{
+    background-image: url('../../Images/landing.jpg');
+    padding-left: 0;
+    padding-right: 0;
+    height: 100%;
+    width: 100%;
+    background-size:cover;
+    background-position:center center;
+    background-repeat: no-repeat;
+    position:absolute;
+    text-align:left;
+}
+.text{
+    font-family: 'Roboto Slab', serif;
+    color:white;
+    font-size: 80px;
+    text-align: left ;
+}
+.button{
+   
+    color: rgb(8, 8, 8);
+  
+    text-decoration: none;
+    font-size: 2em;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(248, 248, 55);
+    font-family: 'Roboto Slab', serif;
+}
+.container{
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-top: 40px;
+    margin-left: 100px;
+}
+.button:hover{
+    box-shadow: 0 0 30px #4bd03f;
+    background-color: #4bd03f;
+    color: white;
+}

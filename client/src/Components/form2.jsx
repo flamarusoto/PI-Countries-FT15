@@ -2,76 +2,79 @@ import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import { NavLink, useHistory } from 'react-router-dom';
-import { getCountries } from '../Redux/Actions';
+import { getCountries, addActivity, clear, getActivities } from '../Redux/Actions';
 
 
 export default function Form() {
     const dispatch = useDispatch();
     const history = useHistory();
     const countries = useSelector(state => state.countries);
+    const activities = useSelector((state) => state.activities);
 
-    const [activities, setActivities] = useState([]);
+    const [name, setName] = useState("");
+    const [difficulty, setDifficulty] = useState("");
+    const [duration, setDuration] = useState("");
+    const [season, setSeason] = useState("");
+    const [countriesActivities, setCountriesActivies] = useState([]);
     const [country, setCountry] = useState([]);
-    const [input, setInput] = useState({ 
-        name: '',             
-        difficulty: '',       
-        season: '',
-        duration: '',
-        country: [],
-      });    
     
+    //VIDEO 3 1.17.06 TIEMPO
+    // useEffect(()=> {
+    //     set
+    // }) 
                               
     useEffect(()=>{
         dispatch(getCountries());
+        dispatch(getActivities());
     }, [dispatch])
 
     const handleCountry = (e) => {
         setCountry(countries.find((el) => el.name === e.target.value));
     }
 
-    //     function getOptions(arr) {
-    //     // console.log(getOptions, 'get')
-    //     let country = [];
-    //     countries.filter((x)=>{
-    //         if (x.id===arr){
-    //             country.push(x.country)
-    //         }
-    //     })
-    //     return country;
-    // }
     const handleCountryAdd = (e) =>{
         e.preventDefault();
         if (country) {
-            setActivities([...activities, country]);
+        setCountriesActivies([...countriesActivities, country]);
         }
         setCountry();
-        let inputId = document.getElementById("dataInput");
-        inputId.value = "";
-        setInput({...input, country})
+        let input = document.getElementById("dataInput");
+        input.value = "";
     }
 
-    const handleName = (e) => {
-        setInput({...input, name:e.target.value})
+    const handleName = (event) => {
+        let provName = event.target.value;
+        setName(provName);
     }
-    const handleDuration = (e) => {
-        setInput({...input, duration:e.target.value})
+    const handleDuration = (event) => {
+        setDuration(event.target.value);
     }
-    const handleDifficulty = (e) => {
-        setInput({...input, difficulty:e.target.value})
+    const handleDifficulty = (event) => {
+        let dif = event.target.value;
+        setDifficulty(dif === "Difficulty" ? null : dif);
     }
-    const handleSeason = (e) => {
-        setInput({...input, season:e.target.value})
+    const handleSeason = (event) => {
+        let seas = event.target.value;
+        setSeason(seas === "Season" ? null : seas);
     }
     
     const removeCountry = (country) => {
-        setActivities(activities.filter((el) => el !== country));
+        setCountriesActivies(countriesActivities.filter((el) => el !== country));
     }
 
     const handlerSubmit = async (e) => {
         console.log('submit', handlerSubmit)
         e.preventDefault();
-        await axios.post('http://localhost:3001/activity', input);
+        await axios.post('http://localhost:3001/activity', name, season, difficulty, duration, country)
+        .then(() => {
+            setCountry(),
+            setDifficulty(),
+            setDuration(),
+            setName(),
+            setSeason()
+        })
         alert("The activity was added successfully");
+        // dispatch(clear());
         history.push('/countries');  
     }
 
@@ -98,10 +101,10 @@ return(
             <label>Season(*):</label> 
             <select onChange={(e) => handleSeason(e)} required>
                 <option>Station in which it takes place?</option>
-                <option value='summer'>Summer</option>
-                <option value='winter'>Winter</option>
-                <option value='automn'>Autumn</option>
-                <option value='spring'>Spring</option>
+                <option value='Summer'>Summer</option>
+                <option value='Winter'>Winter</option>
+                <option value='Autumn'>Autumn</option>
+                <option value='Spring'>Spring</option>
             </select>
 
             <input
@@ -114,7 +117,7 @@ return(
             <datalist id="data">
                 {countries &&
                   countries
-                    .filter((el) => !activities.includes(el))
+                    .filter((el) => !countriesActivities.includes(el))
                     .sort((a, b) => {
                       if (a.name > b.name) {
                         return 1;
@@ -131,12 +134,21 @@ return(
 
             <button onClick={(e) => handleCountryAdd(e)}>+</button>
             <div>
-            {activities &&
-                activities
+            {countriesActivities &&
+                countriesActivities
+                  .sort((a, b) => {
+                    if (a.name > b.name) {
+                      return 1;
+                    }
+                    if (a.name < b.name) {
+                      return -1;
+                    }
+                    return 0;
+                    })
                     .map((el) => {
                     return (
                       <div>
-                        <span>{el.name}</span>
+                        <span>{el.name} </span>
                         <button
                           type="button"
                           onClick={() => removeCountry(el)}>X</button>
