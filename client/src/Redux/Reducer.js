@@ -32,12 +32,12 @@ function reducer(state = initialState, action){
         case FILTER_BY_ACTIVITY: 
         //countriesBackup = countriesToShow
         //activitiesList = activities
-        // const countries2 = state.countriesBackup;
+        // const countries2 = state.countriesToShow;
         //     let countriesByActivity = [];
         //     if (action.payload === "all") {
         //         countriesByActivity = countries2;
         //     } else {
-        //         countriesByActivity = state.activitiesList.filter(activity => activity.name === action.payload)[0].countries.map(countryWithActivity => countryWithActivity)
+        //         countriesByActivity = state.activities.filter(activity => activity.name === action.payload)[0].countries.map(countryWithActivity => countryWithActivity)
         //     }
         //     return {
         //         ...state,

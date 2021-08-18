@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import {useDispatch} from 'react-redux';
-import { clear, searchByName } from '../Redux/Actions';
+import { clear, searchByName } from '../../Redux/Actions';
 
 
 export default function SearchBar(){

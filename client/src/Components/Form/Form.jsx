@@ -2,7 +2,8 @@ import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import { NavLink, useHistory } from 'react-router-dom';
-import { getCountries } from '../Redux/Actions';
+import { getCountries } from '../../Redux/Actions';
+import s from '../Form/Form.module.css'
 
 
 export default function Form() {
@@ -26,27 +27,20 @@ export default function Form() {
     }, [dispatch])
 
     const handleCountry = (e) => {
-        setCountry(countries.find((el) => el.name === e.target.value));
+      let found = countries.find((el) => el.name === e.target.value)
+        setCountry(found);
     }
 
-    //     function getOptions(arr) {
-    //     // console.log(getOptions, 'get')
-    //     let country = [];
-    //     countries.filter((x)=>{
-    //         if (x.id===arr){
-    //             country.push(x.country)
-    //         }
-    //     })
-    //     return country;
-    // }
+  
     const handleCountryAdd = (e) =>{
         e.preventDefault();
         if (country) {
             setActivities([...activities, country]);
         }
-        setCountry();
+        // setCountry();
         let inputId = document.getElementById("dataInput");
         inputId.value = "";
+        console.log(country.id, 'countrid')
         setInput({...input, country})
     }
 
@@ -76,18 +70,18 @@ export default function Form() {
     }
 
 return(
-    <div>
-        <form onSubmit={(e) => handlerSubmit (e)}>
-            <h1>Add Touristic Activity</h1>
-            <label for="name">Name(*):</label>
-            <input type="text" placeholder="Name of activity" onChange={(e) =>handleName(e)} />
+    <div className={s.background}>
+        <form onSubmit={(e) => handlerSubmit (e)} className={s.container}>
+            <h1 className={s.title}>Add Touristic Activity</h1>
+            <label for="name" className={s.text}>Name(*):</label>
+            <input className={s.input} type="text" placeholder="Name of activity" onChange={(e) =>handleName(e)} />
             {/* {errors.name && (<p>{errors.name}</p>)} */}
 
-            <label>Duration:</label>
-            <input type="number" placeholder="Duration time" min="1" onChange={(e) => handleDuration(e)} />
+            <label className={s.text}>Duration:</label>
+            <input className={s.input} type="number" placeholder="Duration time" min="1" onChange={(e) => handleDuration(e)} />
 
-            <label for="difficulty">Difficulty:</label> 
-            <select onChange={(e) => handleDifficulty(e)}>
+            <label for="difficulty" className={s.text}>Difficulty:</label> 
+            <select className={s.select} onChange={(e) => handleDifficulty(e)}>
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -95,8 +89,8 @@ return(
                 <option>5</option>
             </select>
             
-            <label>Season(*):</label> 
-            <select onChange={(e) => handleSeason(e)} required>
+            <label className={s.text}>Season(*):</label> 
+            <select className={s.select} onChange={(e) => handleSeason(e)} required>
                 <option>Station in which it takes place?</option>
                 <option value='summer'>Summer</option>
                 <option value='winter'>Winter</option>
@@ -104,7 +98,7 @@ return(
                 <option value='spring'>Spring</option>
             </select>
 
-            <input
+            <input className={s.input}
                 type="text"
                 list="data"
                 id="dataInput"
@@ -125,7 +119,7 @@ return(
                       return 0;
                     })
                     .map((country) => {
-                      return <option key={country.id} value={country.name} />;
+                      return <option  key={country.id} value={country.name} />;
                     })}
             </datalist>
 

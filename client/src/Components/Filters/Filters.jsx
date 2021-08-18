@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { filterByContinent, getActivities, sortByAlphabet, sortByPopulation, getCountries, filterByActivity } from '../../Redux/Actions';
+import { clear, filterByContinent, getActivities, sortByAlphabet, sortByPopulation, getCountries, filterByActivity } from '../../Redux/Actions';
 
 import s from '../Filters/Filters.module.css'
 
@@ -13,6 +13,7 @@ export default function Filters(){
     useEffect(()=> {
         dispatch(getCountries())
         dispatch(getActivities())
+        dispatch(clear())
     }, [dispatch]);
 
 
@@ -57,7 +58,7 @@ export default function Filters(){
             <div className={s.container}>
             <h2 className={s.title}>Filter by Activity</h2>
                 <select className={s.select}  onChange={handlerActivity}>
-					<option>Selection</option>			
+					<option value="">Selection</option>			
 					{ activities ? activities.map((e)=> {
                         return <option>{e.name}</option>
 					}) 

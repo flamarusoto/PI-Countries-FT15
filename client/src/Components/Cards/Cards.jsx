@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
-import Card from '../Card';
+import Card from '../Card/Card';
 import Pagination from '../Pagination/Pagination';
 import { getCountries } from '../../Redux/Actions';
 import s from '../Cards/Cards.module.css'
@@ -30,7 +30,7 @@ export default function Home () {
 
 
     return (
-        <div className={s.page}>
+        
             <div className={s.cards}>
             {/* <Filters /> */}
             {currentCountries? currentCountries.map((ctry)=>{
@@ -42,8 +42,8 @@ export default function Home () {
                         continent={ctry.continent}/>
                 ) 
             }) : <h2>Loading..</h2>}
-            </div>    
-            <div>
+             
+        <div>
         <Pagination paginate={paginate} countriesPerPage={countriesPerPage} totalCountries={countries?.length}/>
         </div>          
         </div>

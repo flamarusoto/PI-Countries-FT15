@@ -1,0 +1,58 @@
+.background{
+    background-image: url('../../Images/activity.jpg');
+    background-attachment: scroll;
+    padding-left: 0;
+    padding-right: 0;
+    height: 100%;
+    width: 100%;
+    background-size:cover;
+    background-position:center center;
+    background-repeat: repeat;
+    position:absolute;
+    text-align:center;
+}
+.container{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column; 
+    justify-content: center;
+    margin-top: 40px;
+}
+.title{
+    font-family: 'Roboto Slab', serif;
+    font-size: 50px;
+    border-style: solid;
+    border-color: black;
+    padding-top: -10px;
+}
+.text{
+    font-family: 'Roboto Slab', serif;
+    color:black;
+    font-size: 30px;
+    justify-content: left;
+    align-content: left;
+  
+    
+}
+.input{
+    border-radius: 10px;
+    border: groove;
+    text-align: -webkit-center;
+    width: 300px;
+}
+.select {
+    font-family: 'Roboto Slab', serif;
+    font-size: 13px;
+    color: black;
+    padding: 2px;
+    margin: 20px;
+}
+
+.button{
+    color: white;
+    background-color: crimson;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+}
