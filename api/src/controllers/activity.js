@@ -2,16 +2,16 @@ const { Activity, Country } = require('../db');
 
 const createActivity = async(req, res) => {
   
-    const { name, difficulty, duration, season, countries } = req.body;
-    console.log(name, difficulty, duration, season, countries)
+    const { name, difficulty, duration, season, countryId } = req.body;
+    console.log(name, difficulty, duration, season, countryId)
     try{
         const activity = await Activity.create({
             name, difficulty, duration, season
         })
         let countryAdd;
-        if(Array.isArray(countries)) {
+        if(Array.isArray(countryId)) {
             countryAdd = await Promise.all(
-                countries.map((country) => Country.findByPk(country))
+                countryId.map((country) => Country.findByPk(country))
             )
         }
         if(countryAdd) {

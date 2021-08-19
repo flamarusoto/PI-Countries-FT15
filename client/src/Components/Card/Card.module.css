@@ -8,7 +8,8 @@
     row-gap: 25px;
     column-gap: 25px;
 } */
-.container {
+
+/* .container {
     font-family: 'Roboto Slab', serif;
     font-size: 0.8rem;
     margin-right: 8px;
@@ -23,7 +24,7 @@
     min-width: 0;
     word-wrap: break-word;
    
-}
+} */
 .name {
     margin-bottom: 10px;
 }

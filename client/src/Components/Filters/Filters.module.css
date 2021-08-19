@@ -1,8 +1,8 @@
 .container{
     display: inline-grid;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-right: 18px;
-    margin-left: auto;
+    margin-left: 20px;
     border-radius: 15%;
     background: rgba(161, 158, 158, 0.8); 
     padding: 0,3%;

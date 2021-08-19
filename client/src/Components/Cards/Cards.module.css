@@ -1,6 +1,11 @@
 
-.cards {
-    display: inline;
+.cards{
+    display: inline-grid;
+    
+    font-family: 'Roboto Slab', serif;
+}
+/* .cards {
+    display: inline-grid;
     align-content: center;
     justify-content: center;
     flex-wrap: nowrap;
@@ -11,8 +16,5 @@
     margin-top: 8px;
     width: 14rem;
     border-radius: 35px;
-    
- 
-    
-}
+} */
 

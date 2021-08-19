@@ -18,7 +18,7 @@ export default function Form() {
         difficulty: '',       
         season: '',
         duration: '',
-        country: [],
+        countryId: [],
       });    
     
                               
@@ -27,21 +27,28 @@ export default function Form() {
     }, [dispatch])
 
     const handleCountry = (e) => {
-      let found = countries.find((el) => el.name === e.target.value)
-        setCountry(found);
+    //   if (e.target.name === 'id') {
+    //     setInput({
+    //         ...input,
+    //         country: [...input.country, e.target.value]
+    //     });
+    // }
+      setCountry(countries.find((el) => el.name === e.target.value))
+      // setInput({...input, countryId:[country.id]})
+      console.log('setcountry', setCountry)
     }
 
-  
     const handleCountryAdd = (e) =>{
         e.preventDefault();
         if (country) {
             setActivities([...activities, country]);
         }
-        // setCountry();
+        
         let inputId = document.getElementById("dataInput");
         inputId.value = "";
         console.log(country.id, 'countrid')
-        setInput({...input, country})
+        setInput({...input, countryId:[country.id]})
+        console.log('input', setInput)
     }
 
     const handleName = (e) => {
