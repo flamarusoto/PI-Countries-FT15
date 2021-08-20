@@ -11,7 +11,7 @@ export default function Form() {
     const history = useHistory();
     const countries = useSelector(state => state.countries);
 
-    const [activities, setActivities] = useState([]);
+    const [countryAdd, setCountryAdd] = useState([]);
     const [country, setCountry] = useState([]);
     const [input, setInput] = useState({ 
         name: '',             
@@ -33,22 +33,24 @@ export default function Form() {
     //         country: [...input.country, e.target.value]
     //     });
     // }
-      setCountry(countries.find((el) => el.name === e.target.value))
+
+    setCountry(countries.find((el) => el.name === e.target.value))
       // setInput({...input, countryId:[country.id]})
       console.log('setcountry', setCountry)
     }
-
+    
     const handleCountryAdd = (e) =>{
-        e.preventDefault();
-        if (country) {
-            setActivities([...activities, country]);
-        }
-        
-        let inputId = document.getElementById("dataInput");
-        inputId.value = "";
-        console.log(country.id, 'countrid')
-        setInput({...input, countryId:[country.id]})
-        console.log('input', setInput)
+      e.preventDefault();
+      // if (country) {
+      //   setCountryAdd([...countryAdd, country]);
+      // }
+      setCountryAdd([...countryAdd, country]); 
+      let inputId = document.getElementById("dataInput");
+      inputId.value = "";
+      console.log(countryAdd, 'countrid')
+
+      setInput({...input, countryId: countryAdd} )
+
     }
 
     const handleName = (e) => {
@@ -65,13 +67,15 @@ export default function Form() {
     }
     
     const removeCountry = (country) => {
-        setActivities(activities.filter((el) => el !== country));
+        setCountryAdd(countryAdd.filter((el) => el !== country));
     }
-
+    // input = {
+    //   name, difficulty, duration, season, countryId: [countryId.map(el => el.id)]
+    // }
     const handlerSubmit = async (e) => {
         console.log('submit', handlerSubmit)
         e.preventDefault();
-        await axios.post('http://localhost:3001/activity', input);
+        await axios.post('http://localhost:3001/activity',{...input, countryId: countryAdd.map(el => el.id)});
         alert("The activity was added successfully");
         history.push('/countries');  
     }
@@ -115,7 +119,7 @@ return(
             <datalist id="data">
                 {countries &&
                   countries
-                    .filter((el) => !activities.includes(el))
+                    .filter((el) => !countryAdd.includes(el))
                     .sort((a, b) => {
                       if (a.name > b.name) {
                         return 1;
@@ -132,8 +136,8 @@ return(
 
             <button onClick={(e) => handleCountryAdd(e)}>+</button>
             <div>
-            {activities &&
-                activities
+            {countryAdd &&
+                countryAdd
                     .map((el) => {
                     return (
                       <div>
